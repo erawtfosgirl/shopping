@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getProducts } from "../../redux/productSlice";
+import { getCategoryProducts, getProducts } from "../../redux/productSlice";
 import Loading from "../Loading";
 import ProductItem from "./ProductItem";
 import ReactPaginate from "react-paginate";
 
-const Products = () => {
+const Products = ({ category }) => {
   const dispatch = useDispatch();
   const { products, productsStatus } = useSelector((state) => state.products);
   // Here we use item offsets; we could also use page offsets
@@ -31,8 +31,12 @@ const Products = () => {
   };
 
   useEffect(() => {
-    dispatch(getProducts());
-  }, [dispatch]);
+    if (category) {
+      dispatch(getCategoryProducts(category));
+    } else {
+      dispatch(getProducts());
+    }
+  }, [dispatch, category]);
 
   return (
     <div className="w-5/6">

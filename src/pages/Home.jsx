@@ -13,8 +13,8 @@ const Home = () => {
       <SliderComp />
       <Sorting />
       <div className="flex gap-3">
-        <Categories />
-        <Products />
+        <Categories setCategory={setCategory} />
+        <Products category={category} />
       </div>
     </>
   );
