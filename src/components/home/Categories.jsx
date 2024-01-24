@@ -11,7 +11,7 @@ const Categories = () => {
   }, [dispatch]);
 
   return (
-    <div className="w-1/6 bg-gray-100 p-5">
+    <div className="w-1/6 bg-gray-100 p-5 rounded-md min-h-[200px] h-full">
       <div className="pb-1 text-xl font-semibold">Categories</div>
       {categories?.map((category, index) => (
         <div className="text-lg py-2 cursor-pointer hover:bg-gray-200" key={index}>{category}</div>
