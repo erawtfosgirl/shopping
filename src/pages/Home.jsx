@@ -1,9 +1,13 @@
-import React from 'react'
+import React from "react";
+import SliderComp from "../components/home/SliderComp";
 
 const Home = () => {
+  
   return (
-    <div className='underline'>Home</div>
-  )
-}
+    <>
+      <SliderComp />
+    </>
+  );
+};
 
-export default Home
+export default Home;
