@@ -12,7 +12,7 @@ const Home = () => {
     <>
       <SliderComp />
       <Sorting />
-      <div className="flex">
+      <div className="flex gap-3">
         <Categories />
         <Products />
       </div>
