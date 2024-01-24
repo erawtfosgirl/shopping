@@ -5,7 +5,7 @@ import Loading from "../Loading";
 import ProductItem from "./ProductItem";
 import ReactPaginate from "react-paginate";
 
-const Products = ({ category }) => {
+const Products = ({ category, sort }) => {
   const dispatch = useDispatch();
   const { products, productsStatus } = useSelector((state) => state.products);
   // Here we use item offsets; we could also use page offsets
@@ -45,9 +45,13 @@ const Products = ({ category }) => {
       ) : (
         <>
           <div className="flex flex-wrap gap-3">
-            {currentItems?.map((product, index) => (
-              <ProductItem key={index} product={product} />
-            ))}
+            {currentItems
+              ?.sort((a, b) =>
+                sort == "inc" ? a.price - b.price : sort == "dec" ? b.price - a.price : null
+              )
+              .map((product, index) => (
+                <ProductItem key={index} product={product} />
+              ))}
           </div>
           <ReactPaginate
             className="paginate"
