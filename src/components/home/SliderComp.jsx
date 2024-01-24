@@ -3,7 +3,7 @@ import Slider from "react-slick";
 
 const SliderComp = () => {
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     autoplay: true,
