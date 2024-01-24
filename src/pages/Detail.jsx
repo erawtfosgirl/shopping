@@ -1,9 +1,29 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getProductDetail } from "../redux/productSlice";
+import DetailComp from "../components/detail/DetailComp";
+import Loading from "../components/Loading";
 
 const Detail = () => {
-  return (
-    <div>Detail</div>
-  )
-}
+  const { id } = useParams();
+  const dispatch = useDispatch();
+  const { productDetail, productDetailStatus } = useSelector(
+    (state) => state.products
+  );
+  useEffect(() => {
+    dispatch(getProductDetail(id));
+  }, [dispatch, id]);
 
-export default Detail
+  return (
+    <div>
+      {productDetailStatus == "LOADING" ? (
+        <Loading />
+      ) : (
+        <DetailComp productDetail={productDetail} />
+      )}
+    </div>
+  );
+};
+
+export default Detail;
