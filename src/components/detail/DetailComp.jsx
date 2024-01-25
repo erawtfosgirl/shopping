@@ -1,13 +1,28 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/cartSlice";
 
 const DetailComp = ({ productDetail }) => {
   const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
 
   const decrement = () => {
     if (quantity > 1) setQuantity(quantity - 1);
   };
   const increment = () => {
     if (quantity < productDetail?.rating?.count) setQuantity(quantity + 1);
+  };
+
+  const addToBasket = () => {
+    dispatch(
+      addToCart({
+        id: productDetail?.id,
+        title: productDetail?.title,
+        image: productDetail?.image,
+        price: productDetail?.price,
+        quantity: quantity,
+      })
+    );
   };
 
   return (
@@ -50,7 +65,10 @@ const DetailComp = ({ productDetail }) => {
             +
           </div>
         </div>
-        <div className="border w-[200px] h-16 my-4 rounded-md bg-gray-200 flex items-center justify-center cursor-pointer">
+        <div
+          onClick={addToBasket}
+          className="border w-[200px] h-16 my-4 rounded-md bg-gray-200 flex items-center justify-center cursor-pointer"
+        >
           Add to cart
         </div>
       </div>
